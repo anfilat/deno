@@ -162,7 +162,6 @@ fn no_color() {
 // https://github.com/denoland/deno/issues/4262
 #[cfg(unix)]
 #[test]
-#[ignore]
 pub fn test_raw_tty() {
   use pty::fork::*;
   use std::io::{Read, Write};
@@ -198,6 +197,7 @@ pub fn test_raw_tty() {
       .env("DENO_DIR", deno_dir.path())
       .current_dir(util::root_path())
       .arg("run")
+      .arg("--unstable")
       .arg("cli/tests/raw_mode.ts")
       .stdin(Stdio::inherit())
       .stdout(Stdio::inherit())
